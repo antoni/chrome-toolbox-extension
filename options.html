@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Battery status: options</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <script src="options.js"></script>
+    </head>
+    <body>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+
+        <div class="container left">
+            <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Battery status: options</span>
+                        <form id="options">
+                            <select id="percentage">
+                                <option value="" disabled selected>Battery level, below which the notification will be displayed (%)</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="55">55</option>
+                                <option value="100">100</option>
+                            </select>
+                            <label>Materialize Select</label>
+
+                            <select id="accountNo">
+                                <option value="" disabled selected>Logged account number</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+
+                            <a class="waves-effect waves-light btn" id="close">Save</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </body>
+    </html>

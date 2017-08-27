@@ -1,0 +1,10 @@
+{
+    "appName": {
+        "message": "Battery status",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "Shows the current battery status, as well as notifies when the battery charge percentage drops belown a defined level",
+        "description":"The description of the application, displayed in the web store."
+    }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+
+        <!--Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="popup.js"></script>
+        <style>
+            body {
+                min-width: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+
+        <div class="section" id="index-banner">
+            <div class="container">
+                <div class="row center">
+                    <h5><div id="level">(battery level unknown)</div></h5>
+                    <h5><div id="charging">(charging state unknown)</div></h5>
+                    <h5><div id="dischargingTime">(discharging time unknown)</div></h5>
+                </div>
+
+                <!-- GMail compose -->
+                <div class="row center">
+                    <div class="input-field s2">
+                        <input type="text" placeholder="Recipient" name="gmail_recipient" id="gmail_recipient" autofocus>
+                        <label for="gmail_recipient">GMail compose</label>
+                    </div>
+                    </div>
+
+                <!-- YouTube Search -->
+                <div class="row center">
+                    <div class="input-field s2">
+                        <input type="text" placeholder="Query" name="yt_search_query" id="yt_search_query" autofocus>
+                        <label for="yt_search_query">YouTube Search</label>
+                    </div>
+                </div>
+
+                <!-- LinkedIn Search -->
+                <div class="row center">
+                    <div class="input-field s2">
+                        <input type="text" placeholder="Query" name="yt_search_query" id="li_search_query">
+                        <label for="li_search_query">LinkedIn Search</label>
+                    </div>
+                </div>
+
+                <div class="row center">
+                    <a class="waves-effect waves-light btn" id="options">Options</a>
+                </div>
+                <div class="row center">Open with: Ctrl+Shift+Z</div>
+            </div>
+        </div>
+
+    </body>
+</html>
+

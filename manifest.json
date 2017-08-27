@@ -1,0 +1,38 @@
+{
+    "name": "Battery status",
+    "author": "Antoni Rościszewski",
+    "default_locale": "en",
+    "description": "Shows the current battery status, as well as notifies when the battery charge percentage drops below a defined level",
+    "version": "0.1",
+    "icons": {"18":"img/18.png","192":"img/192.png","24":"img/24.png","27":"img/27.png","36":"img/36.png","48":"img/48.png","54":"img/54.png","72":"img/72.png","96":"img/96.png","108":"img/108.png","144":"img/144.png"},
+    "permissions": [
+        "management",
+        "notifications",
+        "tabs"
+    ],
+    "browser_action": {
+        "default_icon": "img/icon.png",
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html",
+    "background": { "scripts": ["background.js"] },
+    "manifest_version": 2,
+
+    "web_accessible_resources": [
+        "img/18.png","img/192.png","img/24.png","img/27.png","img/36.png","img/48.png","img/54.png","img/72.png","img/96.png","img/108.png","img/144.png"
+    ],
+    "content_scripts": [ {
+        "js": [ "js/jquery-3.2.1.min.js", "js/materialize.min.js" ],
+        "matches": [ "http://*/*" ]
+    } ],
+      "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z",
+        "linux": "Ctrl+Shift+Z",
+        "windows": "Alt+Shift+Z",
+        "mac": "Alt+Shift+Z"
+      }
+    }
+  }
+}
