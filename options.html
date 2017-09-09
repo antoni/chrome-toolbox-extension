@@ -30,7 +30,6 @@
                                 <option value="55">55</option>
                                 <option value="100">100</option>
                             </select>
-                            <label>Materialize Select</label>
 
                             <select id="accountNo">
                                 <option value="" disabled selected>Logged account number</option>
@@ -39,10 +38,51 @@
                             </select>
 
                             <a class="waves-effect waves-light btn" id="close">Save</a>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
 
-        </body>
-    </html>
+            <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">JIRA options</span>
+                        <form id="jira_options">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="text" placeholder="Base URL" name="jira_base_url"
+                                    id="jira_ba
+                                    se_url">
+                                    <label for="jira_base_url">Base URL</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s5">
+                                    <input type="text" name="jira_project_id" id="jira_project_id">
+                                    <label for="jira_project_id">Project ID</label>
+                                </div>
+                                <div class="input-field col s5">
+                                    <input type="text" placeholder="Ticket prefix" name="jira_ticket_prefix" id="jira_ticket_prefix">
+                                    <label for="jira_ticket_prefix">Prefix for tickets</label>
+                                </div>
+                                <div class="input-field col s2">
+                                    <select id="jira_ticket_priority" name="jira_ticket_priority" >
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    <label for="jira_ticket_priority">Default tikcet priority</label>
+                                </div>
+                            </div>
+                            <a class="waves-effect waves-light btn" id="jira-save">Save</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

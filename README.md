@@ -11,6 +11,11 @@ developed into a toolbox with some usable features.
  * Search shortcuts: YouTube, LinkedIn
  * Launching GMail compose window directly
 
+### TODO
+
+- [ ] Take whole-page screenshot: https://stackoverflow.com/a/6678156/963881
+- [ ]
+
 ### Download
 
 The extension is available to download (currently in a truncated form, stripped
