@@ -5,9 +5,8 @@ module.exports = {
     entry: {
         popup: path.join(__dirname, 'src/popup.ts'),
         options: path.join(__dirname, 'src/options.ts'),
-        content_script: path.join(__dirname, 'src/content_script.ts'),
         background: path.join(__dirname, 'src/background.ts'),
-        vendor: ['moment', 'jquery']
+        vendor: ['jquery', 'materialize-css']
     },
     output: {
         path: path.join(__dirname, 'dist/js'),
@@ -25,8 +24,9 @@ module.exports = {
     },
     plugins: [
 
-        // pack common vender files
+        // pack common vendor files
         new webpack.optimize.CommonsChunkPlugin({
+            chunks: ['popup', 'options', 'vendor'], // omit 'background'
             name: 'vendor', 
             minChunks: Infinity
         }),

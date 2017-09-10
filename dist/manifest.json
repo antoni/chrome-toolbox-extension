@@ -21,10 +21,7 @@
     "web_accessible_resources": [
         "img/18.png","img/192.png","img/24.png","img/27.png","img/36.png","img/48.png","img/54.png","img/72.png","img/96.png","img/108.png","img/144.png"
     ],
-    "content_scripts": [ {
-        "js": [ "js/jquery-3.2.1.min.js", "js/materialize.min.js" ],
-        "matches": [ "http://*/*" ]
-    } ],
+
       "commands": {
     "_execute_browser_action": {
       "suggested_key": {

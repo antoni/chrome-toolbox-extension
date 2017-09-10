@@ -1,4 +1,6 @@
-KEY_ENTER = '13';
+import * as $ from 'jquery';
+
+const KEY_ENTER = 13
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -12,8 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#charging').textContent = battery.charging ? (battery.level === 1 ? '' : '(charging)') : '(discharging)';
 
         var dischargingTime = 0.0;
-        if(!battery.charging)
-            dischargingTime = (battery.dischargingTime / 60).toFixed(0);
+        // TODO: FIXME
+        //if(!battery.charging)
+        //    dischargingTime = (battery.dischaagingTime / 60).toFixed(0);
 
         document.querySelector('#dischargingTime').textContent = (battery.charging || dischargingTime == Infinity) ? '' : (dischargingTime + ' min');
     }
@@ -90,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.keyCode == KEY_ENTER) { 
             e.preventDefault();
             const bugSummary = $('#jira_bug_summary').val();
-            url = `https:\/\/${baseURL}\/secure\/CreateIssueDetails!`
+            const url = `https:\/\/${baseURL}\/secure\/CreateIssueDetails!`
             + `init.jspa?pid=${projectId}&summary=${bugSummary}&issuetype=`
             + `${issueType}&priority=${priority}`;
             chrome.tabs.create({ url: url});
@@ -102,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#jira_ticket_id').keypress(function(e) { 
         if (e.keyCode == KEY_ENTER) { 
             e.preventDefault();
-            searchURL = `https:\/\/${baseURL}/browse/${ticketPrefix}`;
+            const searchURL = `https:\/\/${baseURL}/browse/${ticketPrefix}`;
             websiteSearch(searchURL, $('#jira_ticket_id').val());
             return false;
         } 

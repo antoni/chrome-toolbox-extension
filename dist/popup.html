@@ -1,86 +1,93 @@
 <!doctype html>
 <html>
-    <head>
 
-        <!-- Google Icon Font -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- materialize.css -->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!-- <script src="js/popup.js"></script> -->
-        <script src="js/vendor.js"></script>
-        <style>
-            body {
-                min-width: 500px;
-            }
-            .input-field.col label {
-                left: 0em;
-            }
-            .input-field.col {
-                padding: 0em;
-            }
-        </style>
-    </head>
-    <body>
-        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
+<head>
 
-        <div class="container">
-            <div class="row center">
-                <h5><div id="level">(battery level unknown)</div></h5>
-                <h5><div id="charging">(charging state unknown)</div></h5>
-                <h5><div id="dischargingTime">(discharging time unknown)</div></h5>
+    <!-- Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- materialize.css -->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="js/vendor.js"></script>
+    <script src="js/popup.js"></script>
+    <style>
+        body {
+            min-width: 500px;
+        }
+
+        .input-field.col label {
+            left: 0em;
+        }
+
+        .input-field.col {
+            padding: 0em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row center">
+            <h5>
+                <div id="level">(battery level unknown)</div>
+            </h5>
+            <h5>
+                <div id="charging">(charging state unknown)</div>
+            </h5>
+            <h5>
+                <div id="dischargingTime">(discharging time unknown)</div>
+            </h5>
+        </div>
+
+        <!-- GMail compose -->
+        <div class="row center">
+            <div class="input-field s12">
+                <input type="text" placeholder="Recipient" name="gmail_recipient" id="gmail_recipient" autofocus>
+                <label for="gmail_recipient">GMail compose</label>
+            </div>
+        </div>
+
+        <!-- YouTube Search -->
+        <div class="row center">
+            <div class="input-field s12">
+                <input type="text" placeholder="Query" name="yt_search_query" id="yt_search_query" autofocus>
+                <label for="yt_search_query">YouTube Search</label>
+            </div>
+        </div>
+
+        <!-- JIRA actions -->
+
+        <div class="row">
+            <!-- Add JIRA bug -->
+            <div class="input-field col s6" style="padding-right: 1em">
+                <input type="text" placeholder="Bug summary" name="jira_bug_summary" id="jira_bug_summary">
+                <label for="jira_bug_summary">Add JIRA bug</label>
             </div>
 
-            <!-- GMail compose -->
-            <div class="row center">
-                <div class="input-field s12">
-                    <input type="text" placeholder="Recipient" name="gmail_recipient" id="gmail_recipient" autofocus>
-                    <label for="gmail_recipient">GMail compose</label>
-                </div>
+            <!-- Open JIRA ticket -->
+
+            <div class="input-field col s6">
+                <input type="text" placeholder="Ticket ID" name="jira_ticket_id" id="jira_ticket_id">
+                <label for="jira_ticket_id">Open JIRA ticket</label>
             </div>
+        </div>
 
-            <!-- YouTube Search -->
-            <div class="row center">
-                <div class="input-field s12">
-                    <input type="text" placeholder="Query" name="yt_search_query" id="yt_search_query" autofocus>
-                    <label for="yt_search_query">YouTube Search</label>
-                </div>
+        <!-- LinkedIn Search -->
+        <div class="row center">
+            <div class="input-field s12">
+                <input type="text" placeholder="Query" name="yt_search_query" id="li_search_query">
+                <label for="li_search_query">LinkedIn Search</label>
             </div>
+        </div>
 
-            <!-- JIRA actions -->
+        <div class="row center">
+            <a class="waves-effect waves-light btn" id="options">Options</a>
+        </div>
 
-            <div class="row">
-                <!-- Add JIRA bug -->
-                 <div class="input-field col s6" style="padding-right: 1em"> 
-                        <input type="text" placeholder="Bug summary" name="jira_bug_summary" id="jira_bug_summary">
-                        <label for="jira_bug_summary">Add JIRA bug</label>
-                    </div>
+        <div class="row center">Open with: Ctrl+Shift+Z</div>
 
-                    <!-- Open JIRA ticket -->
+    </div>
 
-                    <div class="input-field col s6">
-                            <input type="text" placeholder="Ticket ID" name="jira_ticket_id" id="jira_ticket_id">
-                            <label for="jira_ticket_id">Open JIRA ticket</label>
-                        </div>
-                    </div>
+</body>
 
-                    <!-- LinkedIn Search -->
-                    <div class="row center">
-                        <div class="input-field s12">
-                            <input type="text" placeholder="Query" name="yt_search_query" id="li_search_query">
-                            <label for="li_search_query">LinkedIn Search</label>
-                        </div>
-                    </div>
-
-                    <div class="row center">
-                        <a class="waves-effect waves-light btn" id="options">Options</a>
-                    </div>
-
-                    <div class="row center">Open with: Ctrl+Shift+Z</div>
-
-                </div>
-
-            </body>
-        </html>
-
+</html>

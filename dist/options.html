@@ -1,28 +1,25 @@
 <html>
-    <head>
-        <title>Battery status: options</title>
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-        <!-- <script src="js/options.js"></script> -->
-        <script src="js/vendor.js"></script>
-    </head>
-    <body>
+<head>
+    <title>Battery status: options</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/options.js"></script>
+</head>
 
-        <div class="container left">
-            <div class="row">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Battery status: options</span>
-                        <form id="options">
-                            <select id="percentage">
+<body>
+    <div class="container left">
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Battery status: options</span>
+                    <form id="options">
+                        <select id="percentage">
                                 <option value="" disabled selected>Battery level, below which the notification will be displayed (%)</option>
                                 <option value="5">5</option>
                                 <option value="10">10</option>
@@ -32,58 +29,58 @@
                                 <option value="100">100</option>
                             </select>
 
-                            <select id="accountNo">
+                        <select id="accountNo">
                                 <option value="" disabled selected>Logged account number</option>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                             </select>
 
-                            <a class="waves-effect waves-light btn" id="close">Save</a>
-                        </form>
-                    </div>
+                        <a class="waves-effect waves-light btn" id="close">Save</a>
+                    </form>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">JIRA options</span>
-                        <form id="jira_options">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="text" placeholder="Base URL" name="jira_base_url"
-                                    id="jira_ba
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">JIRA options</span>
+                    <form id="jira_options">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" placeholder="Base URL" name="jira_base_url" id="jira_ba
                                     se_url">
-                                    <label for="jira_base_url">Base URL</label>
-                                </div>
+                                <label for="jira_base_url">Base URL</label>
                             </div>
-                            <div class="row">
-                                <div class="input-field col s5">
-                                    <input type="text" name="jira_project_id" id="jira_project_id">
-                                    <label for="jira_project_id">Project ID</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input type="text" placeholder="Ticket prefix" name="jira_ticket_prefix" id="jira_ticket_prefix">
-                                    <label for="jira_ticket_prefix">Prefix for tickets</label>
-                                </div>
-                                <div class="input-field col s2">
-                                    <select id="jira_ticket_priority" name="jira_ticket_priority" >
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s5">
+                                <input type="text" name="jira_project_id" id="jira_project_id">
+                                <label for="jira_project_id">Project ID</label>
+                            </div>
+                            <div class="input-field col s5">
+                                <input type="text" placeholder="Ticket prefix" name="jira_ticket_prefix" id="jira_ticket_prefix">
+                                <label for="jira_ticket_prefix">Prefix for tickets</label>
+                            </div>
+                            <div class="input-field col s2">
+                                <select id="jira_ticket_priority" name="jira_ticket_priority">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                     </select>
-                                    <label for="jira_ticket_priority">Default tikcet priority</label>
-                                </div>
+                                <label for="jira_ticket_priority">Default tikcet priority</label>
                             </div>
-                            <a class="waves-effect waves-light btn" id="jira-save">Save</a>
-                        </form>
-                    </div>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="jira-save">Save</a>
+                    </form>
                 </div>
             </div>
-
         </div>
 
-    </body>
+    </div>
+
+</body>
+
 </html>

@@ -6,19 +6,32 @@
 *
 */
 
-function saveJiraOptions(pid, issueType, priority, baseURL, ticketPrefix) {
-    jiraOptions = {};
-    // Base URL
-    jiraOptions.baseURL = baseURL;
-    // Ticket prefix
-    jiraOptions.ticketPrefix = ticketPrefix;
+import * as $ from 'jquery';
 
+class JiraOptions {
+    // Base URL
+    baseURL: string
+    // Ticket prefix
+    ticketPrefix: string
     // Project Id
-    jiraOptions.pid = pid;
+    pid: number
     // Issue type
-    jiraOptions.issueType = issueType;
+    issueType: number
     // Priority
-    jiraOptions.priority = priority;
+    priority: number
+}
+
+const material_select = () => $('select').material_select();
+
+function saveJiraOptions(pid, issueType, priority, baseURL, ticketPrefix) {
+    const jiraOptions: JiraOptions = {
+        baseURL: baseURL,
+        ticketPrefix: ticketPrefix,
+        pid: pid,
+        issueType: issueType,
+        priority: priority,
+    }
+    
     localStorage.jiraOptions = JSON.stringify(jiraOptions);
 }
 
@@ -26,36 +39,38 @@ function initDefaultJiraOptions() {
     saveJiraOptions(16700, 1, 3, '', '')
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     var close1 = document.getElementById('close');
     var close2 = document.getElementById('jira-save');
-    close1.addEventListener('click', function() {
+    close1.addEventListener('click', function () {
         window.close();
     });
-    close2.addEventListener('click', function() {
+    close2.addEventListener('click', function () {
         saveCurrentJiraOptions();
         window.close();
     });
-    $('select').material_select();
+    material_select();
+
+    var options = <HTMLFormElement>document.getElementById("options");
 
     var percentage = options.percentage;
-    if(localStorage.percentage !== undefined) {
+    if (localStorage.percentage !== undefined) {
         $('#percentage').val(localStorage.percentage).change();
-        $('select').material_select();
+        material_select();
 
     }
-    percentage.onchange = function() {
+    percentage.onchange = function () {
         localStorage.percentage = options.percentage.value;
     };
 
     // Experimental
     var accountNo = options.accountNo;
-    if(localStorage.accountNo !== undefined) {
+    if (localStorage.accountNo !== undefined) {
         $('#accountNo').val(localStorage.accountNo).change();
-        $('select').material_select();
+        material_select();
 
     }
-    accountNo.onchange = function() {
+    accountNo.onchange = function () {
         localStorage.accountNo = options.accountNo.value;
     };
 
@@ -67,16 +82,18 @@ window.addEventListener('load', function() {
 
     var jiraOpts = JSON.parse(localStorage.jiraOptions);
 
-    var baseURL = jira_options.jira_base_url;
-    var projectId = jira_options.jira_project_id;
-    var ticketPriority = jira_options.jira_ticket_priority;
-    var ticketPrefix = jira_options.jira_ticket_prefix;
+    var jiraOptionsForm = <HTMLFormElement>document.getElementById("jira_options");
+
+    var baseURL = jiraOptionsForm.jira_base_url,
+        projectId = jiraOptionsForm.jira_project_id,
+        ticketPriority = jiraOptionsForm.jira_ticket_priority,
+        ticketPrefix = jiraOptionsForm.jira_ticket_prefix;
 
     projectId.value = jiraOpts.pid;
     ticketPriority.value = jiraOpts.priority;
-    $('select').material_select();
-    ticketPrefix.value  = jiraOpts.ticketPrefix;
-    baseURL.value  = jiraOpts.baseURL;
+    material_select();
+    ticketPrefix.value = jiraOpts.ticketPrefix;
+    baseURL.value = jiraOpts.baseURL;
 
     let allOpts = [baseURL, projectId, ticketPriority, ticketPrefix];
 
@@ -90,8 +107,8 @@ window.addEventListener('load', function() {
 
     // List all installed extensions
     // chrome.management.getAll(function(extInfos) {
-        // extInfos.forEach(function(ext) {
-            // console.log(JSON.stringify(ext));
-            // });
-            // });
+    // extInfos.forEach(function(ext) {
+    // console.log(JSON.stringify(ext));
+    // });
+    // });
 });
