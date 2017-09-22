@@ -1,24 +1,28 @@
 // Battery check interval [ms]
-const CHECK_INTERVAL = 15000
-const THRESHOLD_DEFAULT = 0.20
+const BATTERY_CHECK_INTERVAL = 25000;
+const THRESHOLD_DEFAULT = 0.20;
+
+// How often should Youtube window be queried in background
+// to check if video is paused [ms]
+const YOUTUBE_PAUSE_CHECK_INTERVAL = 500;
 
 // Fix for Battery APIs not supported by TypeScript
 interface Navigator {
-    getBattery(): Promise<any>
+    getBattery(): Promise<any>;
 }
 
 // TODO: Fixme
 interface Window {
-    Notification: boolean
+    Notification: boolean;
 }
 
 function show() {
-    var time = <any>/(..)(:..)/.exec(new Date().toLocaleString());    // Prettyprinted time
-    var hour = time[1] % 12 || 12;                                    // Prettyprinted hour
-    var period = time[1] < 12 ? 'a.m.' : 'p.m.';                      // Period of the day
-    new Notification(hour + time[2] + ' ' + period, {
-        icon: 'img/48.png',
-        body: 'Battery level low. Please connect the power supply.'
+    const time = /(..)(:..)/.exec(new Date().toLocaleString()) as any;    // Prettyprinted time
+    const hour = time[1] % 12 || 12;                                    // Prettyprinted hour
+    const period = time[1] < 12 ? "a.m." : "p.m.";                      // Period of the day
+    new Notification(hour + time[2] + " " + period, {
+        body: "Battery level low. Please connect the power supply.",
+        icon: "img/48.png",
     });
 }
 
@@ -31,16 +35,26 @@ if (!localStorage.isInitialized) {
 
 // Test for notification support
 if (window.Notification) {
-    var interval = 0; // Display interval, in minutes
+    let interval = 0; // Display interval, in minutes
 
-    setInterval(function () {
+    setInterval(() => {
         interval++;
-        let threshold = localStorage.percentage == undefined ? THRESHOLD_DEFAULT : localStorage.percentage / 100.0;
+        const threshold = localStorage.percentage === undefined ? THRESHOLD_DEFAULT : localStorage.percentage / 100.0;
 
-        navigator.getBattery().then(function (battery) {
+        navigator.getBattery().then((battery) => {
             if (!battery.charging && battery.level < threshold) {
                 show();
             }
         });
-    }, CHECK_INTERVAL);
+    }, BATTERY_CHECK_INTERVAL);
 }
+
+setInterval(() => {
+    chrome.tabs.query({ currentWindow: true, index: 0 }, (tabs) => {
+        if (tabs.length > 0) {
+            chrome.tabs.executeScript(tabs[0].id, { code: 'document.getElementsByClassName("video-stream")[0].paused' },
+                (isPaused) => localStorage.isYoutubePaused = isPaused[0] ? "true" : "false",
+            );
+        }
+    });
+}, YOUTUBE_PAUSE_CHECK_INTERVAL);

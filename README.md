@@ -13,8 +13,13 @@ developed into a toolbox with some usable features.
 
 ### TODO
 
+- [x] Add YouTube controls
+- [ ] Popup when YouTube is not open as the first tab of the current window
+- [ ] GMail compose - add recipients file: `~/.config/toolbox/gmail_recipients.json`
 - [ ] Take whole-page screenshot: https://stackoverflow.com/a/6678156/963881
-- [ ]
+- [x] Add `history.back()` when YouTube `<` key is not present: `chrome.tabs.executeScript(null,{"code": "window.history.back()"});`
+- [ ] Fix `3:7` battery rem. time
+- [ ] Add extended description on Chrome Web Store
 
 ### Download
 

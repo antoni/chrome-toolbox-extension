@@ -22,27 +22,51 @@
         .input-field.col {
             padding: 0em;
         }
+
+        .hand-link {
+            cursor: pointer;
+        }
+
+        i.icon-blue {
+            color: blue;
+        }
+
+        .nobottom {
+            margin-bottom: 0px;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- YouTube controls -->
+        <div class="row center valign-wrapper nobottom">
+            <div class="col s2 hand-link" id="skip_previous_link"><i id="skip_previous" class="large material-icons cyan-text text-darken-3">skip_previous</i></div>
+            <div class="col s2 hand-link" id="play_pause_link" autofocus><i id="play_pause" class="large material-icons cyan-text text-darken-3">play_arrow</i></div>
+            <div class="col s2 hand-link" id="skip_next_link"><i id="skip_next" class="large material-icons cyan-text text-darken-3">skip_next</i></div>
+
+            <div class="col s6 hand-link">
+                <img class="responsive-img" id="youtube_logo" href="https://google.com" src="img/youtube_logo.png" />
+            </div>
+        </div>
+
+        <div class="row center">
+            <div class="col s12">
+                <h6><span id="now_playing" class="gray-text text-darken-4">Do you have YouTube open in first tabs?</span></h6>
+            </div>
+        </div>
+
         <div class="row center">
             <h5>
-                <div id="level">(battery level unknown)</div>
-            </h5>
-            <h5>
-                <div id="charging">(charging state unknown)</div>
-            </h5>
-            <h5>
-                <div id="dischargingTime">(discharging time unknown)</div>
+                <span id="level">(battery level unknown)</span> <span id="charging">(charging state unknown)</span> <span id="dischargingTime">(discharging time unknown)</span>
             </h5>
         </div>
 
         <!-- GMail compose -->
         <div class="row center">
             <div class="input-field s12">
-                <input type="text" placeholder="Recipient" name="gmail_recipient" id="gmail_recipient" autofocus>
+                <input type="text" placeholder="Recipient" name="gmail_recipient" id="gmail_recipient">
                 <label for="gmail_recipient">GMail compose</label>
             </div>
         </div>
@@ -50,7 +74,7 @@
         <!-- YouTube Search -->
         <div class="row center">
             <div class="input-field s12">
-                <input type="text" placeholder="Query" name="yt_search_query" id="yt_search_query" autofocus>
+                <input type="text" placeholder="Query" name="yt_search_query" id="yt_search_query">
                 <label for="yt_search_query">YouTube Search</label>
             </div>
         </div>
@@ -81,10 +105,15 @@
         </div>
 
         <div class="row center">
-            <a class="waves-effect waves-light btn" id="options">Options</a>
+            <!-- <div class="col s6"> -->
+                <!-- <a class="waves-effect waves-light btn" id="screenshot">Screenshot</a> -->
+            <!-- </div> -->
+            <!-- <div class="col s6">                 -->
+                <a class="waves-effect waves-light btn" id="options">Options</a>
+            <!-- </div> -->
         </div>
 
-        <div class="row center">Open with: Ctrl+Shift+Z</div>
+        <!-- <div class="row center">Open with: Ctrl+Shift+Z</div> -->
 
     </div>
 

@@ -1,14 +1,16 @@
 {
-    "name": "Battery status",
+    "name": "Web Toolbox",
     "author": "Antoni Rościszewski",
     "default_locale": "en",
-    "description": "Shows the current battery status, as well as notifies when the battery charge percentage drops below a defined level",
+    "description": "A set of tools for efficiently managing your web and browser experience.",
     "version": "0.1",
     "icons": {"18":"img/18.png","192":"img/192.png","24":"img/24.png","27":"img/27.png","36":"img/36.png","48":"img/48.png","54":"img/54.png","72":"img/72.png","96":"img/96.png","108":"img/108.png","144":"img/144.png"},
     "permissions": [
         "management",
         "notifications",
-        "tabs"
+        "tabs",
+        "http://*/",
+        "https://*/"
     ],
     "browser_action": {
         "default_icon": "img/icon.png",
@@ -28,7 +30,7 @@
         "default": "Ctrl+Shift+Z",
         "linux": "Ctrl+Shift+Z",
         "windows": "Alt+Shift+Z",
-        "mac": "Alt+Shift+Z"
+        "mac": "Command+Shift+Z"
       }
     }
   }
