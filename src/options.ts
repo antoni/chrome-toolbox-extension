@@ -7,6 +7,35 @@
  */
 
 import * as $ from "jquery";
+import { executeClickInTab } from "./modules/utils"
+
+enum IssueType {
+    BLOCKER = 0,
+    BUG = 1,
+    NEW_FEATURE = 2,
+    TASK = 3,
+    IMPROVEMENT = 4,
+    EPIC = 5,
+    STORY = 6,
+    TECHNICAL_TASK = 7,
+    A_PART_OF_LARGE_TASK = 8,
+    TECHNICAL_DEBT = 9,
+}
+
+enum Priority {
+    BLOCKER = 1,
+    CRITICAL = 2,
+    MAJOR = 3,
+    MINOR = 4,
+}
+
+enum PersonalProjects {
+    ADNETWORK = 16700,
+    LAMI = 18700,
+}
+
+const DEFAULT_ISSUE_TYPE = IssueType.BUG;
+const DEFAULT_PROJECT_ID = PersonalProjects.LAMI;
 
 class JiraOptions {
     // Base URL
@@ -19,6 +48,34 @@ class JiraOptions {
     public priority: number;
     // Ticket prefix
     public ticketPrefix: string;
+}
+
+const handleFileSelect = (input: HTMLInputElement, lineHandler: (line: string) => any) => {
+    // TODO: FIX
+    // if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+    //     alert('The File APIs are not fully supported in this browser.');
+    //     return;
+    // }
+
+    // TODO: Callbacks instead of console.log()
+    if (!input) {
+        console.log("Couldn't find the fileinput element.");
+    } else if (!input.files) {
+        console.log("This browser doesn't seem to support the `files` property of file inputs.");
+    } else if (!input.files[0]) {
+        console.log("Please select a file before clicking 'Load'");
+    } else {
+        let file = input.files[0];
+        let fr = new FileReader();
+        fr.onload = (function (file) {
+            return function (e) { this.result.split('\n').forEach(lineHandler); }
+        })(file);
+
+        fr.readAsText(file);
+    }
+
+    // Reconfigure onchange handler
+    input.onchange = (event: Event) => { handleFileSelect(input, line => console.log(line)); }
 }
 
 const materialSelect = () => $("select").material_select();
@@ -37,7 +94,32 @@ const saveJiraOptions = (baseURL, issueType, pid, priority, ticketPrefix) => {
 
 const initDefaultJiraOptions = () => { saveJiraOptions(16700, 1, 3, "", ""); };
 
+// const JIRA_CREATE_CLICK_DELAY = 5000;
+const JIRA_CREATE_CLICK_DELAY = 7000;
+
+const jiraTicketUrlClick = (url: string) => {
+    if (url == "") return;
+
+    const tabCreateCallback = tabId => setTimeout(() => {
+        executeClickInTab(tabId, "issue-create-submit", () => alert("Error creating JIRA issue!"));
+    }, JIRA_CREATE_CLICK_DELAY);
+
+    chrome.tabs.create({
+        // url: "https://google.com",
+        url: url,
+        index: 0,
+        pinned: true,
+        active: false
+    }, tab => tabCreateCallback(tab.id))
+}
+
 window.addEventListener("load", () => {
+
+    let input = <HTMLInputElement>document.getElementById('jira_link_list');
+    input.onchange = (event: Event) => {
+        // handleFileSelect(input, line => console.log(line));
+        handleFileSelect(input, line => jiraTicketUrlClick(line));
+    }
     const close1 = document.getElementById("close");
     const close2 = document.getElementById("jira-save");
     close1.addEventListener("click", () => { window.close(); });
@@ -50,7 +132,6 @@ window.addEventListener("load", () => {
     if (localStorage.percentage !== undefined) {
         $("#percentage").val(localStorage.percentage).change();
         materialSelect();
-
     }
     percentage.onchange = () => { localStorage.percentage = options.percentage.value; };
 
@@ -63,7 +144,6 @@ window.addEventListener("load", () => {
     accountNo.onchange = () => { localStorage.accountNo = options.accountNo.value; };
 
     // JIRA
-
     if (localStorage.jiraOptions === undefined) {
         initDefaultJiraOptions();
     }
@@ -86,8 +166,8 @@ window.addEventListener("load", () => {
     const allOpts = [baseURL, projectId, ticketPriority, ticketPrefix];
 
     const saveCurrentJiraOptions = () => {
-        saveJiraOptions(projectId.value, 1, ticketPriority.value, baseURL.value, ticketPrefix.value);
+        saveJiraOptions(baseURL.value, DEFAULT_ISSUE_TYPE, projectId.value, ticketPriority.value, ticketPrefix.value);
     };
 
-    allOpts.forEach((opt) => opt.onchange = saveCurrentJiraOptions);
+    allOpts.forEach(opt => opt.onchange = saveCurrentJiraOptions);
 });

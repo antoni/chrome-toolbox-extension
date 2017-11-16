@@ -1,25 +1,20 @@
-// Battery check interval [ms]
-const BATTERY_CHECK_INTERVAL = 25000;
-const THRESHOLD_DEFAULT = 0.20;
-
-// How often should Youtube window be queried in background
-// to check if video is paused [ms]
-const YOUTUBE_PAUSE_CHECK_INTERVAL = 500;
+import { BATTERY_CHECK_INTERVAL, THRESHOLD_DEFAULT } from "./constants"
 
 // Fix for Battery APIs not supported by TypeScript
-interface Navigator {
-    getBattery(): Promise<any>;
-}
-
-// TODO: Fixme
-interface Window {
-    Notification: boolean;
+declare global {
+    interface Navigator {
+        getBattery(): Promise<any>;
+    }
+    interface Window {
+        Notification: boolean;
+    }
 }
 
 function show() {
-    const time = /(..)(:..)/.exec(new Date().toLocaleString()) as any;    // Prettyprinted time
-    const hour = time[1] % 12 || 12;                                    // Prettyprinted hour
-    const period = time[1] < 12 ? "a.m." : "p.m.";                      // Period of the day
+    const now = new Date();
+    const time = /(..)(:..)/.exec(now.toLocaleString()) as any;    // Prettyprinted time
+    const hour = time[1] % 12 || 12;                               // Prettyprinted hour
+    const period = now.getHours() < 12 ? "a.m." : "p.m.";          // Period of the day
     new Notification(hour + time[2] + " " + period, {
         body: "Battery level low. Please connect the power supply.",
         icon: "img/48.png",
@@ -39,22 +34,13 @@ if (window.Notification) {
 
     setInterval(() => {
         interval++;
-        const threshold = localStorage.percentage === undefined ? THRESHOLD_DEFAULT : localStorage.percentage / 100.0;
+        let threshold = localStorage.percentage === undefined ? THRESHOLD_DEFAULT : localStorage.percentage / 100.0;
+        console.log(threshold);
 
-        navigator.getBattery().then((battery) => {
+        navigator.getBattery().then(battery => {
             if (!battery.charging && battery.level < threshold) {
                 show();
             }
         });
     }, BATTERY_CHECK_INTERVAL);
 }
-
-setInterval(() => {
-    chrome.tabs.query({ currentWindow: true, index: 0 }, (tabs) => {
-        if (tabs.length > 0) {
-            chrome.tabs.executeScript(tabs[0].id, { code: 'document.getElementsByClassName("video-stream")[0].paused' },
-                (isPaused) => localStorage.isYoutubePaused = isPaused[0] ? "true" : "false",
-            );
-        }
-    });
-}, YOUTUBE_PAUSE_CHECK_INTERVAL);

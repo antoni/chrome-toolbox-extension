@@ -1,6 +1,6 @@
+// module ExtensionLister {
 // List all installed extensions
-chrome.management.getAll(function (extInfos) {
-    extInfos.forEach(function (ext) {
-        console.log(JSON.stringify(ext));
-    });
-});
+export const listExtension = (consumer: (ExtensionInfo) => void) => {
+    chrome.management.getAll(extInfos => extInfos.forEach(consumer));
+}
+// }
