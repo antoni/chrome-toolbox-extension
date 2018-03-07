@@ -2,13 +2,19 @@ import { KEY_ENTER } from "../constants"
 import { clearAllNotifications, websiteSearch } from "./utils"
 
 export const setupJiraControls = () => {
+
+if (!localStorage.jiraOptions) {
+             chrome.runtime.openOptionsPage();
+             return
+            }
+
     // JIRA
-    const jiraOpts = JSON.parse(localStorage.jiraOptions);
-    const baseURL = jiraOpts.baseURL;
-    const projectId = jiraOpts.pid;
-    const issueType = jiraOpts.issueType;
-    const priority = jiraOpts.priority;
-    const ticketPrefix = jiraOpts.ticketPrefix;
+    const jiraOptions = JSON.parse(localStorage.jiraOptions)
+    const baseURL = jiraOptions.baseURL;
+    const projectId = jiraOptions.pid;
+    const issueType = jiraOptions.issueType;
+    const priority = jiraOptions.priority;
+    const ticketPrefix = jiraOptions.ticketPrefix;
 
     // Add JIRA bug
     $("#jira_bug_summary").keypress((e) => {
@@ -21,7 +27,7 @@ export const setupJiraControls = () => {
             chrome.tabs.create({ url });
             return false;
         }
-    });
+    })
 
     // Open JIRA ticket
     $("#jira_ticket_id").keypress((e) => {
@@ -31,6 +37,7 @@ export const setupJiraControls = () => {
             websiteSearch(searchURL, $("#jira_ticket_id").val());
             return false;
         }
-    });
+    })
+
     clearAllNotifications();
 }

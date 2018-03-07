@@ -9,7 +9,14 @@ import { clearAllNotifications, websiteSearch } from "./modules/utils";
 let escKeyPressed = false;
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Workaround over Materialize's focus on first input field
+    // (we want the focus on Play/Pause button)
+    const FIRST_INPUT_FIELD_ID = "gmail_recipient"
+    setTimeout(() => document.getElementById(FIRST_INPUT_FIELD_ID).blur(), 150);
+
     chrome.tabs.query({}, allTabs => {
+
         var isYoutubePaused: string;
         let youtubeTab = checkForYoutubeTab(allTabs, (tab: chrome.tabs.Tab) => {
             if (tab !== undefined) {

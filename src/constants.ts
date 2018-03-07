@@ -8,6 +8,6 @@ export const
       // Max time between 2 subsequent key presses to be qualified as double timem
       KEYPRESS_BETWEEN = 200,
 
-      // Battery check interval [ms]
-      BATTERY_CHECK_INTERVAL = 25000,
+      // Battery check interval [ms], 2 mins
+      BATTERY_CHECK_INTERVAL = 120000,
       THRESHOLD_DEFAULT = 0.20;

@@ -9,6 +9,14 @@
 import * as $ from "jquery";
 import { executeClickInTab } from "./modules/utils"
 
+declare global {
+    interface JQuery {
+        material_select: () => JQuery;
+    }
+}
+
+declare var material_select:JQueryStatic;
+
 enum IssueType {
     BLOCKER = 0,
     BUG = 1,
@@ -92,7 +100,7 @@ const saveJiraOptions = (baseURL, issueType, pid, priority, ticketPrefix) => {
     localStorage.jiraOptions = JSON.stringify(jiraOptions);
 };
 
-const initDefaultJiraOptions = () => { saveJiraOptions(16700, 1, 3, "", ""); };
+const initDefaultJiraOptions = () => { saveJiraOptions("kredito.atlassian.net", 3, 16700, 1, "LAMI-"); };
 
 // const JIRA_CREATE_CLICK_DELAY = 5000;
 const JIRA_CREATE_CLICK_DELAY = 7000;
@@ -148,7 +156,7 @@ window.addEventListener("load", () => {
         initDefaultJiraOptions();
     }
 
-    const jiraOpts = JSON.parse(localStorage.jiraOptions);
+    const jiraOptions = JSON.parse(localStorage.jiraOptions);
 
     const jiraOptionsForm = document.getElementById("jira_options") as HTMLFormElement;
 
@@ -157,11 +165,11 @@ window.addEventListener("load", () => {
     const ticketPriority = jiraOptionsForm.jira_ticket_priority;
     const ticketPrefix = jiraOptionsForm.jira_ticket_prefix;
 
-    projectId.value = jiraOpts.pid;
-    ticketPriority.value = jiraOpts.priority;
+    projectId.value = jiraOptions.pid;
+    ticketPriority.value = jiraOptions.priority;
     materialSelect();
-    ticketPrefix.value = jiraOpts.ticketPrefix;
-    baseURL.value = jiraOpts.baseURL;
+    ticketPrefix.value = jiraOptions.ticketPrefix;
+    baseURL.value = jiraOptions.baseURL;
 
     const allOpts = [baseURL, projectId, ticketPriority, ticketPrefix];
 

@@ -2,6 +2,8 @@ import { YoutubeTabCallback } from "../types";
 import { goBackInTab } from "./utils"
 import { KEY_LEFT_ARROW, KEY_SPACE, KEY_RIGHT_ARROW, KEY_ESCAPE, KEYPRESS_BETWEEN } from "../constants";
 
+declare var Materialize:any;
+
 const getVideoTitle = (keyCode, youtubeTab) => {
     // Execute '>>' and '<<' with delay (give YouTube time to reload the page)
     const timeout = (keyCode === undefined || keyCode === KEY_SPACE) ? 0 : 2000;

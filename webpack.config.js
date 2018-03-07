@@ -2,39 +2,40 @@ const webpack = require("webpack");
 const path = require('path');
 
 module.exports = {
-    entry: {
-        popup: path.join(__dirname, 'src/popup.ts'),
-        options: path.join(__dirname, 'src/options.ts'),
-        background: path.join(__dirname, 'src/background.ts'),
-        vendor: ['jquery', 'materialize-css']
-    },
-    output: {
-        path: path.join(__dirname, 'dist/js'),
-        filename: '[name].js'
-    },
-    module: {
-        loaders: [{
-            exclude: /node_modules/,
-            test: /\.tsx?$/,
-            loader: 'ts-loader'
-        }]
-    },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-    },
-    plugins: [
+  entry: {
+    popup: path.join(__dirname, 'src/popup.ts'),
+    options: path.join(__dirname, 'src/options.ts'),
+    background: path.join(__dirname, 'src/background.ts'),
+    stack_overflow_sort: path.join(__dirname, 'src/stack_overflow_sort.ts'),
+    vendor: ['jquery', 'materialize-css']
+  },
+  output: {
+    path: path.join(__dirname, 'dist/js'),
+    filename: '[name].js'
+  },
+  module: {
+    loaders: [{
+      exclude: /node_modules/,
+      test: /\.tsx?$/,
+      loader: 'ts-loader'
+    }]
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
+  plugins: [
 
-        // pack common vendor files
-        new webpack.optimize.CommonsChunkPlugin({
-            chunks: ['popup', 'options', 'vendor'], // omit 'background'
-            name: 'vendor', 
-            minChunks: Infinity
-        }),
+    // pack common vendor files
+    new webpack.optimize.CommonsChunkPlugin({
+      chunks: ['popup', 'options', 'vendor'], // omit 'background'
+      name: 'vendor', 
+      minChunks: Infinity
+    }),
 
-        // exclude locale files in moment
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // exclude locale files in moment
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
-        // minify
-        // new webpack.optimize.UglifyJsPlugin()
-    ]
+    // minify
+    // new webpack.optimize.UglifyJsPlugin()
+  ]
 };
