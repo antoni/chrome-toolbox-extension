@@ -1,15 +1,24 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": false,
-        "removeComments": true,
-        "sourceMap": false,
-        "rootDir": "src",
-        "outDir": "dist/js",
-        "noEmitOnError": false,
-        "types": [
-            "chrome", "jquery", "materialize-css"
-        ]
-    }
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "test/*.ts",
+    "test/**/*.ts"
+  ],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist/js",
+    "sourceMap": false,
+    "lib": ["dom", "es6"],
+    "removeComments": true,
+    "target": "es6",
+    "noEmitOnError": false,
+    "types": [
+      "chrome",
+      "jquery",
+      "node",
+      "materialize-css"
+    ],
+  }
 }
