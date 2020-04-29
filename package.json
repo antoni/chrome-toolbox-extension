@@ -24,7 +24,7 @@
   "dependencies": {
     "@types/node": "^10.12.18",
     "html2canvas": "1.0.0-alpha.12",
-    "jquery": "3.4.x",
+    "jquery": "3.5.x",
     "jspdf": "1.4.1",
     "materialize-css": "1.0.0"
   },
