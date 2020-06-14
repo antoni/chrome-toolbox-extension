@@ -18,10 +18,12 @@ developed into a toolbox with some usable features.
 - [x] Popup when YouTube is not open as the first tab of the current window
 - [ ] Take whole-page screenshot: https://stackoverflow.com/a/6678156/963881
 - [x] Add `history.back()` when YouTube `<` key is not present: `chrome.tabs.executeScript(null,{"code": "window.history.back()"});`
-- [x] Fix `3:7` battery rem. time
 - [ ] Add extended description on Chrome Web Store
 - [x] Add sorting [Stackoverflow](https://stackoverflow.com/) answers by votes
 - [ ] Use https://github.com/google/ts-style
+- [ ] Implement Zoom content script similar to: https://github.com/seanstar12/zoom-close
+- [ ] Add Google Calendar link generation shortcut (see: gen_gcal_url.js)
+- [ ] Save list of all installed extensions somewhere
 
 ### Download
 

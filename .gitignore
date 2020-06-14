@@ -3,3 +3,6 @@ node_modules/
 dist/js
 tmp/
 
+.idea
+
+yarn-error.log
