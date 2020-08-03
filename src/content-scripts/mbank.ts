@@ -13,8 +13,10 @@ const hideHtmlElement = (htmlElement: HTMLElement) => {
 }
 
 const hideHtmlElementById = (htmlElementId: string) => {
-  console.debug("Trying to find HTML element with ID: ", htmlElementId)
   const htmlElement = document.getElementById(htmlElementId) as HTMLElement
+  if(!htmlElement) {
+      console.debug("Could not find HTML element with ID: ", htmlElementId)
+  }
   hideHtmlElement(htmlElement)
 }
 

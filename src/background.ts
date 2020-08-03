@@ -1,6 +1,6 @@
 import {BATTERY_CHECK_INTERVAL, THRESHOLD_DEFAULT} from './constants';
 
-// Fix for Battery APIs not supported by TypeScript
+// Battery API is not supported by TypeScript
 declare global {
   interface BatteryManager {
     readonly charging: boolean;
@@ -39,6 +39,7 @@ if (!localStorage.isInitialized) {
   localStorage.isInitialized = true;  // Option initialization
 }
 
+
 // Test for notification support
 if (window.Notification) {
   let interval = 0;  // Display interval, in minutes
@@ -57,3 +58,9 @@ if (window.Notification) {
     });
   }, BATTERY_CHECK_INTERVAL);
 }
+
+chrome.management.getAll(function(extInfos) {
+    extInfos.forEach(function(ext) {
+        console.log(ext.name);
+    });
+});
