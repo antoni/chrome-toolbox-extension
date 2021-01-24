@@ -24,6 +24,8 @@ developed into a toolbox with some usable features.
 - [ ] Implement Zoom content script similar to: https://github.com/seanstar12/zoom-close
 - [ ] Add Google Calendar link generation shortcut (see: gen_gcal_url.js)
 - [ ] Save list of all installed extensions somewhere
+- [ ] Chrome ext.: copy selection to new Google doc (https://support.google.com/a/users/answer/9308871?hl=en)
+- [ ] Chrome extension: Open "Constants → Login" and (try to) autologin everywhere
 
 ### Download
 
